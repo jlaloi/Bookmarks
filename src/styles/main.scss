@@ -1,0 +1,122 @@
+$defaultColor: #444;
+$linkColor: orchid;
+$errorColor: crimson;
+$buttonColor: white;
+$buttonBgColor: mediumpurple;
+$customBGColor: mediumseagreen;
+$defaultSpace: 0.2em;
+$defaultBorder: 1px solid $defaultColor;
+$defaultBorderRadius: 2px;
+
+@mixin border {
+  border: $defaultBorder;
+  border-radius: $defaultBorderRadius;
+}
+
+body,
+input,
+button {
+  color: $defaultColor;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+  text-align: center;
+}
+
+a {
+  text-decoration: none;
+  color: $linkColor;
+}
+
+.delete {
+  color: $errorColor;
+  background-color: transparent;
+  border: 0;
+  margin: 0;
+  padding: 0;
+}
+
+.error {
+  color: $errorColor;
+}
+
+input,
+button {
+  @include border;
+  margin: $defaultSpace;
+}
+
+button {
+  color: $buttonColor;
+  cursor: pointer;
+  background-color: $buttonBgColor;
+}
+
+button:hover {
+  border-style: dashed;
+}
+
+.Bookmark {
+  @include border;
+  display: inline-block;
+  padding: $defaultSpace;
+  margin: $defaultSpace;
+  width: 20em;
+}
+
+.Bookmark {
+  img,
+  .noThumbnail {
+    height: 75px;
+    border: $defaultBorder;
+    border-radius: 5px;
+  }
+  .metadatas {
+    color: $defaultColor;
+    font-size: 0.8em;
+    background-color: transparent;
+  }
+  h3 {
+    margin: 0;
+  }
+  .noThumbnail {
+    display: inline-block;
+    background-color: $customBGColor;
+    color: $buttonColor;
+    font-weight: bold;
+    height: 75px;
+    line-height: 75px;
+  }
+  a:hover {
+    background-color: $buttonBgColor;
+    display: block;
+    border-radius: $defaultBorderRadius;
+  }
+}
+
+.BookmarkTagList {
+  * {
+    display: inline-block;
+    margin-right: $defaultSpace;
+  }
+  .BookmarkTag {
+    line-height: 1em;
+    font-style: italic;
+    button {
+      font-size: 1em;
+      font-weight: bold;
+    }
+  }
+}
+.EditableText {
+  cursor: pointer;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.EditableText:hover {
+  background-color: $buttonBgColor;
+  border-radius: $defaultBorderRadius;
+}

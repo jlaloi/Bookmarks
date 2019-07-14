@@ -1,0 +1,30 @@
+{
+  "name": "bookmarks",
+  "version": "1.0.0",
+  "description": "bookmarks manager",
+  "main": "src/main.tsx",
+  "scripts": {
+    "dev": "parcel ./src/index.html --open"
+  },
+  "author": "julien.laloi@gmail.com",
+  "license": "ISC",
+  "dependencies": {
+    "@apollo/react-hooks": "0.1.0-beta.10",
+    "apollo-cache-inmemory": "^1.6.2",
+    "apollo-client": "^2.6.3",
+    "apollo-link-http": "^1.5.15",
+    "graphql": "^14.4.2",
+    "graphql-tag": "^2.10.1",
+    "npm": "^6.10.1",
+    "react": "^16.8.6",
+    "react-apollo": "^2.5.8",
+    "react-dom": "^16.8.6"
+  },
+  "devDependencies": {
+    "@types/react": "^16.8.23",
+    "@types/react-dom": "^16.8.4",
+    "parcel-bundler": "^1.12.3",
+    "sass": "^1.22.4",
+    "typescript": "^3.5.3"
+  }
+}
