@@ -21,7 +21,7 @@ type Bookmark @model {
 * Create the file ```./src/config/keys.ts``` with below content :
 ```js
 export const API_KEY_FLICKR = '<YOUR FLICKR API KEY>';
-export const API_KEY_GRAPHCOOL = '<YOUR GRAPHCOO API KEY>';
+export const API_KEY_GRAPHCOOL = '<YOUR GRAPHCOOL API KEY>';
 export const API_KEY_VIMEO = '<YOUR VIMEO  API KEY>';
 ```
 * Install dependencies :
