@@ -24,7 +24,6 @@ export const BookmarkAdd = () => {
 
   return (
     <form onSubmit={handleSubmit} ref={formRef}>
-      {url}
       {/* No need of "value={url}" as the form is reseted to clear validation */}
       <input type="text" placeholder="New Bookmark" onChange={e => setUrl(e.target.value)} required />
       <button>Add</button>
