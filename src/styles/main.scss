@@ -4,7 +4,7 @@ $errorColor: crimson;
 $buttonColor: white;
 $buttonBgColor: mediumpurple;
 $customBGColor: mediumseagreen;
-$defaultSpace: 0.2em;
+$defaultSpacing: 0.2em;
 $defaultBorder: 1px solid $defaultColor;
 $defaultBorderRadius: 2px;
 
@@ -44,7 +44,7 @@ a {
 input,
 button {
   @include border;
-  margin: $defaultSpace;
+  margin: $defaultSpacing;
 }
 
 button {
@@ -60,8 +60,8 @@ button:hover {
 .Bookmark {
   @include border;
   display: inline-block;
-  padding: $defaultSpace;
-  margin: $defaultSpace;
+  padding: $defaultSpacing;
+  margin: $defaultSpacing;
   width: 20em;
 }
 
@@ -72,7 +72,7 @@ button:hover {
     border: $defaultBorder;
     border-radius: 5px;
   }
-  .metadatas {
+  .metadataText {
     color: $defaultColor;
     font-size: 0.8em;
     background-color: transparent;
@@ -87,6 +87,7 @@ button:hover {
     font-weight: bold;
     height: 75px;
     line-height: 75px;
+    padding: 0 $defaultSpacing;
   }
   a:hover {
     background-color: $buttonBgColor;
@@ -98,7 +99,7 @@ button:hover {
 .BookmarkTagList {
   * {
     display: inline-block;
-    margin-right: $defaultSpace;
+    margin-right: $defaultSpacing;
   }
   .BookmarkTag {
     line-height: 1em;

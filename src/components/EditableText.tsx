@@ -27,6 +27,7 @@ export const EditableText = ({value, onUpdate, placeholder}: EditableTextInput) 
   React.useEffect(() => {
     if (edit) inputRef.current.focus();
   }, [edit]);
+
   return !edit ? (
     /* Text display (read only) */
     <div className="EditableText" onClick={() => setEdit(true)} title="Click to edit">
@@ -37,8 +38,8 @@ export const EditableText = ({value, onUpdate, placeholder}: EditableTextInput) 
     <form onSubmit={updateHandler}>
       <input
         type="text"
-        value={newValue}
         placeholder={placeholder}
+        value={newValue}
         onChange={event => setNewValue(event.target.value)}
         ref={inputRef}
         onBlur={() => setEdit(false)}

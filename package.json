@@ -4,7 +4,7 @@
   "description": "bookmarks manager",
   "main": "src/main.tsx",
   "scripts": {
-    "dev": "parcel ./src/index.html --open"
+    "start": "parcel ./src/index.html --open"
   },
   "author": "julien.laloi@gmail.com",
   "license": "ISC",
@@ -15,9 +15,7 @@
     "apollo-link-http": "^1.5.15",
     "graphql": "^14.4.2",
     "graphql-tag": "^2.10.1",
-    "npm": "^6.10.1",
     "react": "^16.8.6",
-    "react-apollo": "^2.5.8",
     "react-dom": "^16.8.6"
   },
   "devDependencies": {

@@ -8,7 +8,7 @@ export const BookmarkList = () => {
   /*
    * Simple pagination.
    *  - Using global store is overkill for such restricted functionnality
-   *  - Database pagination is also overskill as  bookmarks are quite small and limited in quantity
+   *  - Database pagination is also overskill as Bookmarks are quite small objects and limited in quantity
    */
   const pageSize = 3;
   const [pagePos, pageDispatch] = React.useReducer((state: number, action: {type: 'next'} | {type: 'prev'}) => {
@@ -23,7 +23,7 @@ export const BookmarkList = () => {
   }, 0);
 
   /*
-   * Get all bookmarks
+   * Get all Bookmarks
    */
   const {loading, data, error} = useQuery(GET_BOOKMARKS);
 
@@ -33,7 +33,7 @@ export const BookmarkList = () => {
         <p>Loading ...</p>
       ) : (
         <div>
-          {/* Error display */}
+          {/* All Bookmarks query error */}
           {error && <div className="error">{error.message}</div>}
 
           {/* Bookmark list */}

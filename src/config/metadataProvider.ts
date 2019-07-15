@@ -17,7 +17,7 @@ interface Provider {
   name: string;
   regexInternalId: RegExp;
   getInternalId: (url: string) => string;
-  fetchMetaData: (url: String) => Promise<Metadata | MetadataVideo>;
+  fetchMetadata: (url: String) => Promise<Metadata | MetadataVideo>;
 }
 
 /**
@@ -30,7 +30,7 @@ const providers: Provider[] = [
     getInternalId(url) {
       return url.match(this.regexInternalId).reduce((a, b) => b);
     },
-    async fetchMetaData(url) {
+    async fetchMetadata(url) {
       try {
         const internalId = this.getInternalId(url);
         const request = await fetch(`https://api.vimeo.com/videos/${internalId}`, {
@@ -67,7 +67,7 @@ const providers: Provider[] = [
     getInternalId(url) {
       return url.match(this.regexInternalId)[1];
     },
-    async fetchMetaData(url) {
+    async fetchMetadata(url) {
       try {
         const internalId = this.getInternalId(url);
         const request = await fetch(
@@ -106,9 +106,9 @@ const providers: Provider[] = [
 /**
  * Get the metadata
  */
-export const getMetaData = (url: string) => {
+export const getMetadata = (url: string) => {
   const provider = providers.find(provider => url.match(provider.regexInternalId));
-  if (provider) return provider.fetchMetaData(url);
+  if (provider) return provider.fetchMetadata(url);
   else
     return Promise.resolve({
       author: null,

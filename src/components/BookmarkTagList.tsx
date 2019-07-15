@@ -1,6 +1,5 @@
 import * as React from 'react';
 import {useMutation} from '@apollo/react-hooks';
-
 import {UPDATE_BOOKMARK_TAGS} from '../config/queries';
 import {EditableText} from './EditableText';
 import {Bookmark} from '../config/types';
@@ -11,7 +10,7 @@ type Action =
   | {type: 'update'; index: number; payload: string};
 
 export const BookmarkTagList = ({bookmark}: {bookmark: Bookmark}) => {
-  // New tag value
+  // New tag text
   const [newTag, setNewTag] = React.useState('');
   // Reference to new tag form to reset it after submit
   const formRef = React.useRef(null);
@@ -51,7 +50,7 @@ export const BookmarkTagList = ({bookmark}: {bookmark: Bookmark}) => {
 
   return (
     <div className="BookmarkTagList">
-      {/*Tag list*/}
+      {/*Tag list */}
       {newTagList.map((tag, index) => (
         <span key={index} className="BookmarkTag">
           {/* Tag edit name */}
@@ -70,10 +69,10 @@ export const BookmarkTagList = ({bookmark}: {bookmark: Bookmark}) => {
 
       {/* Add new tag form */}
       <form onSubmit={handleAddTagForm} ref={formRef}>
-        <input type="text" required placeholder="Add tag" onChange={event => setNewTag(event.target.value)} />
+        <input type="text" placeholder="Add tag" onChange={event => setNewTag(event.target.value)} required />
       </form>
 
-      {/* Graphql error */}
+      {/* Mutation update tag error */}
       {error && <div className="error">{error.message}</div>}
     </div>
   );

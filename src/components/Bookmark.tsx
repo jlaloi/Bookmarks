@@ -4,16 +4,16 @@ import {BookmarkTagList} from './BookmarkTagList';
 import {EditableText} from './EditableText';
 import {DELETE_BOOKMARK, UPDATE_BOOKMARK_META} from '../config/queries';
 import {Bookmark as BookmarkType} from '../config/types';
-import {getMetaData} from '../config/metadataProvider';
+import {getMetadata} from '../config/metadataProvider';
 
 export const Bookmark = ({bookmark}: {bookmark: BookmarkType}) => {
-  // Mutation to delete bookmark
+  // Mutation to delete Bookmark
   const [deleteBookmark, {error: errorD}] = useMutation(DELETE_BOOKMARK, {
     variables: {id: bookmark.id},
     refetchQueries: ['allBookmarks'],
   });
 
-  // Mutation to update bookmark metadata
+  // Mutation to update Bookmark metadata
   const [updateBookmarkMetadata, {error: errorM}] = useMutation(UPDATE_BOOKMARK_META, {
     refetchQueries: ['allBookmarks'],
   });
@@ -22,7 +22,7 @@ export const Bookmark = ({bookmark}: {bookmark: BookmarkType}) => {
    * Persist new url to database with optionnal metadata
    */
   const updateUrl = async (newUrl: string) => {
-    const metadata = await getMetaData(newUrl);
+    const metadata = await getMetadata(newUrl);
     updateBookmarkMetadata({variables: {id: bookmark.id, url: newUrl, ...metadata}});
   };
 
@@ -30,21 +30,26 @@ export const Bookmark = ({bookmark}: {bookmark: BookmarkType}) => {
   let metadataText = ``;
   if (bookmark.publicationDate) metadataText += `${new Date(bookmark.publicationDate).toLocaleDateString()} `;
   if (bookmark.author) metadataText += `${bookmark.author} `;
-  if (bookmark.width && bookmark.height) metadataText += ` -  ${bookmark.width} x ${bookmark.height}px `;
-  if (bookmark.duration) metadataText += ` -  ${bookmark.duration}s `;
+  if (bookmark.width && bookmark.height) metadataText += ` -  ${bookmark.width}x${bookmark.height}px `;
+  if (bookmark.duration) metadataText += ` -  ${bookmark.duration}s`;
 
   return (
     <div className="Bookmark">
       {/* Display attributes */}
       <a href={bookmark.url} target="_blank" title="Open link in new tab">
         {bookmark.title && <h3>{bookmark.title}</h3>}
-        {bookmark.thumbnail ? <img src={bookmark.thumbnail} alt={bookmark.title}/> : <span className="noThumbnail">No preview</span>}
-        <div className="metadatas">{metadataText}</div>
+        {bookmark.thumbnail ? (
+          <img src={bookmark.thumbnail} alt={bookmark.title} />
+        ) : (
+          <span className="noThumbnail">No preview</span>
+        )}
+        <div className="metadataText">{metadataText}</div>
       </a>
       {/* Edit url form */}
       <EditableText value={bookmark.url} onUpdate={updateUrl} placeholder="New url" />
       {/* Bookmark list */}
       <BookmarkTagList bookmark={bookmark} />
+      {/* Delete button */}
       <button onClick={e => deleteBookmark()}>Delete Bookmark</button>
       {/* Delete mutation error */}
       {errorD && <div className="error">{errorD.message}</div>}
