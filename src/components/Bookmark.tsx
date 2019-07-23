@@ -27,11 +27,21 @@ export const Bookmark = ({bookmark}: {bookmark: BookmarkType}) => {
   };
 
   // Metadatas to display
-  let metadataText = ``;
-  if (bookmark.publicationDate) metadataText += `${new Date(bookmark.publicationDate).toLocaleDateString()} `;
-  if (bookmark.author) metadataText += `${bookmark.author} `;
-  if (bookmark.width && bookmark.height) metadataText += ` -  ${bookmark.width}x${bookmark.height}px `;
-  if (bookmark.duration) metadataText += ` -  ${bookmark.duration}s`;
+  const computeMetatada = ({author, duration, publicationDate, width, height}: BookmarkType) => {
+    let metadataText = ``;
+    if (publicationDate) metadataText += `${new Date(publicationDate).toLocaleDateString()} `;
+    if (author) metadataText += `${author} `;
+    if (width && height) metadataText += ` -  ${width}x${height}px `;
+    if (duration) metadataText += ` -  ${duration}s`;
+    return metadataText;
+  };
+  const metadatas = React.useMemo(() => computeMetatada(bookmark), [
+    bookmark.author,
+    bookmark.duration,
+    bookmark.publicationDate,
+    bookmark.width,
+    bookmark.height,
+  ]);
 
   return (
     <div className="Bookmark">
@@ -43,7 +53,7 @@ export const Bookmark = ({bookmark}: {bookmark: BookmarkType}) => {
         ) : (
           <span className="noThumbnail">No preview</span>
         )}
-        <div className="metadataText">{metadataText}</div>
+        <div className="metadataText">{metadatas}</div>
       </a>
       {/* Edit url form */}
       <EditableText value={bookmark.url} onUpdate={updateUrl} placeholder="New url" />
